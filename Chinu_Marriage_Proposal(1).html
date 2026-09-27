@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Question for Chinu ❤️</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at top, #fff8fb, #f8dce8 55%, #e8bfd2);
+  }
+  .card {
+    width: min(92vw, 430px);
+    min-height: 520px;
+    padding: 42px 24px 32px;
+    border-radius: 28px;
+    background: rgba(255,255,255,.9);
+    box-shadow: 0 20px 60px rgba(100,50,80,.18);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .emoji { font-size: 48px; margin-bottom: 8px; }
+  h1 {
+    margin: 8px 0 12px;
+    font-size: 30px;
+    color: #5b2944;
+  }
+  .question {
+    font-size: 20px;
+    line-height: 1.55;
+    color: #513744;
+    margin: 0 auto 25px;
+    max-width: 350px;
+  }
+  .sub {
+    font-size: 14px;
+    color: #8a6877;
+    margin-bottom: 28px;
+  }
+  .buttons {
+    position: relative;
+    height: 150px;
+    margin-top: 8px;
+  }
+  button {
+    border: 0;
+    border-radius: 999px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(80,40,60,.15);
+    transition: transform .15s ease;
+  }
+  #yes {
+    background: #c94f7c;
+    color: white;
+    margin-right: 12px;
+  }
+  #yes:hover { transform: scale(1.06); }
+  #no {
+    background: #eee;
+    color: #555;
+    position: absolute;
+    left: 50%;
+    top: 70px;
+    transform: translateX(15px);
+  }
+  .success {
+    display: none;
+  }
+  .success h2 {
+    color: #b33d6b;
+    font-size: 32px;
+    margin: 12px 0;
+  }
+  .success p {
+    color: #5a3c49;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .ring { font-size: 62px; }
+  .heart {
+    position: fixed;
+    bottom: -30px;
+    font-size: 20px;
+    opacity: .7;
+    animation: float 7s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes float {
+    from { transform: translateY(0) rotate(0deg); opacity: 0; }
+    15% { opacity: .75; }
+    to { transform: translateY(-115vh) rotate(25deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div id="proposal">
+      <div class="emoji">🌸</div>
+      <h1>Chinu…</h1>
+      <p class="question">
+        We have shared so many little moments together.<br>
+        Now I have one very big question for you… 💍
+      </p>
+      <p class="sub">Please choose carefully 😌😂</p>
+
+      <div class="buttons">
+        <button id="yes">YES 💍</button>
+        <button id="no">NO 🙈</button>
+      </div>
+    </div>
+
+    <div id="success" class="success">
+      <div class="ring">💍</div>
+      <h2>She said YES! ❤️</h2>
+      <p>
+        From Litu to his Chinu…<br>
+        One little click, one lifetime together. 🥹
+      </p>
+      <p><strong>“Will you be my forever?”</strong></p>
+    </div>
+  </div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const proposal = document.getElementById("proposal");
+const success = document.getElementById("success");
+
+function moveNo() {
+  const pad = 12;
+  const maxX = Math.max(pad, window.innerWidth - noBtn.offsetWidth - pad);
+  const maxY = Math.max(pad, window.innerHeight - noBtn.offsetHeight - pad);
+  const x = Math.floor(Math.random() * maxX);
+  const y = Math.floor(Math.random() * maxY);
+  noBtn.style.position = "fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+  noBtn.style.transform = "none";
+}
+
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  moveNo();
+});
+noBtn.addEventListener("click", moveNo);
+
+yesBtn.addEventListener("click", () => {
+  proposal.style.display = "none";
+  success.style.display = "block";
+  for (let i = 0; i < 22; i++) {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.textContent = ["❤️","💗","🌸","✨"][Math.floor(Math.random()*4)];
+    h.style.left = Math.random()*100 + "vw";
+    h.style.animationDelay = Math.random()*2 + "s";
+    h.style.fontSize = (16 + Math.random()*20) + "px";
+    document.body.appendChild(h);
+  }
+});
+</script>
+</body>
+</html>
